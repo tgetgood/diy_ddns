@@ -8,17 +8,13 @@ function contains(hash, name) {
 }
 
 var hosts = {};
+app.post('/:hostname', function(req, res) {
+	// TODO: Add some sort of authentication to prevent wanton destruction. 
+	var ip = (req.body.ip !== undefined ? req.body.ip : req.connection.remoteAddress);
+	hosts[req.params.hostname] =  ip;
 
-app.post('/', function(req, res) {
-	if (req.body.hostname !== undefined && req.body.ip !== undefined) {
-		hosts[req.body.hostname] = req.body.ip;
-		res.statusCode = 200;
-		res.write("All set.");
-	}
-	else {
-		res.statusCode = 400;
-		res.write("Invalid request.");
-	}
+	res.statusCode = 200;
+	res.write("All set.");
 	res.end();
 });
 
