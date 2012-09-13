@@ -34,5 +34,7 @@ app.get('/:hostname', function(req, res) {
 	res.end();
 });
 							
-app.listen(80);
+var port = process.argv[2] || 80;
+app.listen(port);
+console.log("Listening on port %d", port);
 
