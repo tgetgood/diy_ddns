@@ -17,33 +17,42 @@ That's it.
 N.B. There is no security built in. Once the server is running anyone can use it and anyone can overwrite any hostname as if ICANN had never existed. It may be prudent to hide the server behind a proxy and only allow trusted traffic. If you really are just using it for personal uses then this probably is not an issue. Hopefully some basic authentication will be in the next version.
 
 
-Setting up the server
----------------------
+Setting up the server:
+----------------------
 
 Get npm:
-  curl http://npmjs.org/install.sh | sh
+
+	curl http://npmjs.org/install.sh | sh
 
 Install express:
+
 	npm install express
 
 TODO: make a package file.
 
-Run the server on using your favourite process immortality tool. Or live on the egde and just run it.
+Run the server using your favourite process immortality tool. Or live on the egde and just run it.
+
 	node server.js [port_number]
+
 or
+
 	forever server.js [port_number]
 
 By default the server runs on port 80.
 
-Setting up the client
----------------------
+Setting up the client:
+----------------------
 
 The easiest way to keep the server updated is to run
+
 	crontab -e
+
 and add the following line:
+
 	01 * * * * curl --data '' URL/HOSTNAME
 
 If you're behind a proxy or there's some other reason that the server will not see the right address for you, use:
+
 	01 * * * * curl --data "ip=$(curl 'http://automation.whatismyip.com/n09230945.asp')" URL/HOSTNAME
 
 
@@ -53,5 +62,6 @@ Info:
 -----
 
 Author: Thomas Getgood
+
 Version: 0.1
 
